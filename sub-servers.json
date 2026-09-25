@@ -1,179 +1,34 @@
 {
-  "dns": {
-    "servers": [
-      "1.1.1.1",
-      "1.0.0.1"
-    ],
-    "queryStrategy": "UseIPv4"
-  },
-  "routing": {
-    "rules": [
-      {
-        "type": "field",
-        "domain": [
-          "domain:max.ru",
-          "domain:oneme.ru"
-        ],
-        "outboundTag": "block"
-      },
-      {
-        "type": "field",
-        "domain": [
-          "domain:rtk.harknmav.fun",
-          "domain:sub.harknmav.fun",
-          "domain:st.harknmav.ru",
-          "keyword:yandex",
-          "domain:ya.ru",
-          "domain:ya.cc",
-          "keyword:yastat",
-          "keyword:yndx",
-          "keyword:yccdn",
-          "keyword:clck",
-          "keyword:kinopoisk",
-          "domain:mvk.com",
-          "domain:vk.com",
-          "domain:vk.ru",
-          "domain:vk.cc",
-          "domain:vk.link",
-          "domain:vk.me",
-          "keyword:vkontakte",
-          "keyword:userapi",
-          "keyword:cdn-vk",
-          "keyword:vk-cdn",
-          "keyword:vk-portal",
-          "keyword:vkcache",
-          "keyword:vkcdnservice",
-          "keyword:vkuser",
-          "keyword:vkmessenger",
-          "keyword:vk-apps",
-          "keyword:vkvideo",
-          "keyword:vkclips",
-          "keyword:vklive",
-          "keyword:boom",
-          "domain:ok.ru",
-          "domain:ok.me",
-          "domain:okl.lt",
-          "keyword:odnoklassniki",
-          "keyword:odnoklasniki",
-          "keyword:odkl",
-          "domain:okcdn.ru",
-          "keyword:apiok",
-          "keyword:insideok",
-          "keyword:mycdn",
-          "keyword:mrgcdn",
-          "domain:mts.ru",
-          "keyword:mymts",
-          "keyword:mts-ws",
-          "keyword:wildberries",
-          "domain:wb.ru",
-          "keyword:wb-basket",
-          "keyword:wbbasket",
-          "keyword:wbcontent",
-          "keyword:wbstatic",
-          "keyword:wb-sale",
-          "keyword:wbpay",
-          "keyword:paywb",
-          "keyword:ozon",
-          "domain:o3.ru",
-          "keyword:samokat",
-          "keyword:megamarket",
-          "keyword:rustore",
-          "keyword:avito",
-          "keyword:2gis",
-          "keyword:rutube",
-          "keyword:rtbcdn",
-          "keyword:alfa",
-          "domain:vtb.ru",
-          "keyword:vtb-direct",
-          "keyword:vtbglobalperspectives",
-          "keyword:gazprombank",
-          "domain:gpb.ru",
-          "domain:psb.ru",
-          "keyword:psbank",
-          "keyword:psb-ocenka",
-          "keyword:moex",
-          "keyword:finuslugi",
-          "keyword:nspk",
-          "keyword:mironline",
-          "keyword:mir-platform",
-          "keyword:sberdevices",
-          "keyword:zvuk",
-          "keyword:sbermobile",
-          "keyword:sberdisk",
-          "keyword:okko",
-          "keyword:playfamily",
-          "keyword:kuper",
-          "keyword:giga",
-          "domain:mail.ru",
-          "domain:tech-mail.ru",
-          "domain:appsmail.ru",
-          "domain:attachmail.ru",
-          "domain:cdnmail.ru",
-          "domain:imgsmail.ru",
-          "domain:smailru.net",
-          "domain:vmailru.net",
-          "domain:xmail.ru"
-        ],
-        "outboundTag": "direct"
-      },
-      {
-        "type": "field",
-        "network": "tcp,udp",
-        "balancerTag": "Super_Balancer"
-      }
-    ],
-    "balancers": [
-      {
-        "tag": "Super_Balancer",
-        "selector": [
-          "proxy"
-        ],
-        "strategy": {
-          "type": "leastLoad",
-          "settings": {
-            "maxRTT": "3000ms",
-            "expected": 2,
-            "tolerance": 0.11
-          }
-        }
-      }
-    ],
-    "domainMatcher": "hybrid",
-    "domainStrategy": "AsIs"
-  },
   "inbounds": [
     {
-      "tag": "socks",
-      "port": 10808,
       "listen": "127.0.0.1",
+      "port": 10808,
       "protocol": "socks",
       "settings": {
-        "udp": true,
-        "auth": "noauth"
+        "allowTransparent": false,
+        "auth": "noauth",
+        "udp": true
       },
       "sniffing": {
+        "destOverride": ["http", "tls", "quic"],
         "enabled": true,
-        "routeOnly": true,
-        "destOverride": [
-          "tls"
-        ]
-      }
+        "metadataOnly": false,
+        "routeOnly": false
+      },
+      "tag": "socks"
     },
     {
-      "tag": "http",
-      "port": 10809,
       "listen": "127.0.0.1",
+      "port": 10809,
       "protocol": "http",
-      "settings": {
-        "allowTransparent": false
-      },
+      "settings": {},
       "sniffing": {
+        "destOverride": ["http", "tls", "quic"],
         "enabled": true,
-        "routeOnly": true,
-        "destOverride": [
-          "tls"
-        ]
-      }
+        "metadataOnly": false,
+        "routeOnly": false
+      },
+      "tag": "http"
     }
   ],
   "outbounds": [
@@ -183,11 +38,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "194.55.239.13",
+            "address": "me.nehtar.ru",
             "port": 443,
             "users": [
               {
-                "id": "01906bbe-8d76-4b38-ba5f-60e1d93f1e04",
+                "id": "3b6400cc-103c-4281-9dc6-a32c6772a982",
                 "encryption": "none",
                 "flow": ""
               }
@@ -196,146 +51,45 @@
         ]
       },
       "streamSettings": {
-        "network": "xhttp",
-        "xhttpSettings": {
-          "mode": "stream-one",
-          "host": "",
-          "path": "/api/v2/upload/8a3f1c5be24d2854",
-          "extra": {
-            "xmux": {
-              "maxConnections": 2,
-              "hKeepAlivePeriod": 10,
-              "hMaxRequestTimes": 1500,
-              "hMaxReusableSecs": 4800
-            },
-            "noGRPCHeader": false
+        "network": "ws",
+        "wsSettings": {
+          "path": "/v1/data/sync/",
+          "headers": {
+            "Host": "me.nehtar.ru",
+            "X-Whitelist-Header": "fee6a9dd-d656-4b62-b228-77eec4580141"
           }
         },
         "security": "tls",
         "tlsSettings": {
-          "serverName": "land.harknmav.fun",
-          "enableSessionResumption": false,
+          "serverName": "me.nehtar.ru",
           "fingerprint": "firefox",
           "alpn": [
-            "h2"
+            "http/1.1"
           ]
         }
       }
     },
     {
-      "tag": "proxy-2",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "194.55.239.13",
-            "port": 443,
-            "users": [
-              {
-                "id": "01906bbe-8d76-4b38-ba5f-60e1d93f1e04",
-                "encryption": "none",
-                "flow": ""
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "xhttp",
-        "xhttpSettings": {
-          "mode": "stream-one",
-          "host": "",
-          "path": "/api/v2/upload/8a3f1c5be24d2854",
-          "extra": {
-            "xmux": {
-              "maxConnections": 2,
-              "hKeepAlivePeriod": 10,
-              "hMaxRequestTimes": 1500,
-              "hMaxReusableSecs": 4800
-            },
-            "noGRPCHeader": false
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "land.harknmav.fun",
-          "enableSessionResumption": false,
-          "fingerprint": "firefox",
-          "alpn": [
-            "h2"
-          ]
-        }
-      }
+      "protocol": "freedom",
+      "settings": { "domainStrategy": "UseIP" },
+      "tag": "direct"
     },
     {
-      "tag": "proxy-3",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "194.55.239.46",
-            "port": 443,
-            "users": [
-              {
-                "id": "01906bbe-8d76-4b38-ba5f-60e1d93f1e04",
-                "encryption": "none",
-                "flow": ""
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "xhttp",
-        "xhttpSettings": {
-          "mode": "stream-one",
-          "host": "",
-          "path": "/api/v2/upload/8a3f1c5be24d2854",
-          "extra": {
-            "xmux": {
-              "maxConnections": 2,
-              "hKeepAlivePeriod": 10,
-              "hMaxRequestTimes": 1500,
-              "hMaxReusableSecs": 4800
-            },
-            "noGRPCHeader": false
-          }
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "land.harknmav.fun",
-          "enableSessionResumption": false,
-          "fingerprint": "firefox",
-          "alpn": [
-            "h2"
-          ]
-        }
-      }
-    },
-    {
-      "tag": "direct",
-      "protocol": "freedom"
-    },
-    {
-      "tag": "block",
-      "protocol": "blackhole"
+      "protocol": "blackhole",
+      "settings": { "response": { "type": "http" } },
+      "tag": "block"
     }
   ],
-  "burstObservatory": {
-    "pingConfig": {
-      "timeout": "5s",
-      "interval": "30s",
-      "sampling": 3,
-      "httpMethod": "HEAD",
-      "destination": "https://www.gstatic.com/generate_204",
-      "connectivity": "http://connectivitycheck.gstatic.com/generate_204"
-    },
-    "subjectSelector": [
-      "proxy"
+  "routing": {
+    "domainStrategy": "IPIfNonMatch",
+    "rules": [
+      { "type": "field", "ip": ["geoip:private"], "outboundTag": "direct" },
+      { "type": "field", "network": "udp", "outboundTag": "proxy" },
+      { "type": "field", "domain": ["geosite:category-ru"], "outboundTag": "direct" },
+      { "type": "field", "ip": ["geoip:ru"], "outboundTag": "direct" },
+      { "type": "field", "network": "tcp", "outboundTag": "proxy" }
     ]
   },
-  "remarks": "Обход (временный)",
-  "meta": {
-    "serverDescription": " "
-  }
+  "remarks": "Универсальный Обход",
+  "meta": { "serverDescription": " " }
 }
