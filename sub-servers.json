@@ -1,95 +1,306 @@
-{
-  "inbounds": [
-    {
-      "listen": "127.0.0.1",
-      "port": 10808,
-      "protocol": "socks",
-      "settings": {
-        "allowTransparent": false,
-        "auth": "noauth",
-        "udp": true
-      },
-      "sniffing": {
-        "destOverride": ["http", "tls", "quic"],
-        "enabled": true,
-        "metadataOnly": false,
-        "routeOnly": false
-      },
-      "tag": "socks"
-    },
-    {
-      "listen": "127.0.0.1",
-      "port": 10809,
-      "protocol": "http",
-      "settings": {},
-      "sniffing": {
-        "destOverride": ["http", "tls", "quic"],
-        "enabled": true,
-        "metadataOnly": false,
-        "routeOnly": false
-      },
-      "tag": "http"
-    }
-  ],
-  "outbounds": [
-    {
-      "tag": "proxy",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "me.nehtar.ru",
-            "port": 443,
-            "users": [
-              {
-                "id": "3b6400cc-103c-4281-9dc6-a32c6772a982",
-                "encryption": "none",
-                "flow": ""
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/v1/data/sync/",
-          "headers": {
-            "Host": "me.nehtar.ru",
-            "X-Whitelist-Header": "fee6a9dd-d656-4b62-b228-77eec4580141"
-          }
+[
+  {
+    "inbounds": [
+      {
+        "listen": "127.0.0.1",
+        "port": 10808,
+        "protocol": "socks",
+        "settings": {
+          "allowTransparent": false,
+          "auth": "noauth",
+          "udp": true
         },
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "me.nehtar.ru",
-          "fingerprint": "firefox",
-          "alpn": [
-            "http/1.1"
-          ]
-        }
+        "sniffing": {
+          "destOverride": ["http", "tls", "quic"],
+          "enabled": true,
+          "metadataOnly": false,
+          "routeOnly": false
+        },
+        "tag": "socks"
+      },
+      {
+        "listen": "127.0.0.1",
+        "port": 10809,
+        "protocol": "http",
+        "settings": {},
+        "sniffing": {
+          "destOverride": ["http", "tls", "quic"],
+          "enabled": true,
+          "metadataOnly": false,
+          "routeOnly": false
+        },
+        "tag": "http"
       }
+    ],
+    "outbounds": [
+      {
+        "tag": "TCP + REALITY",
+        "protocol": "vless",
+        "settings": {
+          "vnext": [
+            {
+              "address": "188.225.62.104",
+              "port": 8443,
+              "users": [
+                {
+                  "id": "3b6400cc-103c-4281-9dc6-a32c6772a982",
+                  "encryption": "none",
+                  "flow": "xtls-rprx-vision"
+                }
+              ]
+            }
+          ]
+        },
+        "streamSettings": {
+          "network": "tcp",
+          "security": "reality",
+          "realitySettings": {
+            "serverName": "max.ru",
+            "fingerprint": "firefox",
+            "publicKey": "AiG06E-jizo9xtBbulKQvdQqhZfobZJBTQIKkaDjaiU",
+            "shortId": "a1b2c3d4e5",
+            "spiderX": ""
+          }
+        }
+      },
+      {
+        "tag": "xHTTP + TLS",
+        "protocol": "vless",
+        "settings": {
+          "vnext": [
+            {
+              "address": "91.215.42.63",
+              "port": 443,
+              "users": [
+                {
+                  "id": "3b6400cc-103c-4281-9dc6-a32c6772a982",
+                  "encryption": "none",
+                  "flow": ""
+                }
+              ]
+            }
+          ]
+        },
+        "streamSettings": {
+          "network": "xhttp",
+          "security": "tls",
+          "tlsSettings": {
+            "serverName": "me.nehtar.ru",
+            "fingerprint": "firefox",
+            "alpn": [
+              "h2",
+              "http/1.1"
+            ]
+          },
+          "xhttpSettings": {
+            "host": "me.nehtar.ru",
+            "path": "/api/orders/loadChunk/",
+            "mode": "packet-up",
+            "extra": {
+              "xmux": {
+                "cMaxLifetimeMs": 0,
+                "cMaxReuseTimes": 66,
+                "maxConnections": 1,
+                "hMaxRequestTimes": 480,
+                "hMaxReusableSecs": 1260
+              },
+              "seqKey": "id",
+              "sessionKey": "auth",
+              "noSSEHeader": true,
+              "xPaddingKey": "xss",
+              "seqPlacement": "query",
+              "sessionIDKey": "auth",
+              "uplinkDataKey": "X-Ver",
+              "xPaddingBytes": 550,
+              "sessionIDTable": "alphabet",
+              "xPaddingHeader": "api_v1",
+              "xPaddingMethod": "tokenish",
+              "sessionIDLength": 20,
+              "sessionPlacement": "query",
+              "uplinkHTTPMethod": "GET",
+              "xPaddingObfsMode": true,
+              "xPaddingPlacement": "query",
+              "sessionIDPlacement": "query",
+              "uplinkDataPlacement": "body",
+              "scStreamUpServerSecs": 50
+            }
+          }
+        }
+      },
+      {
+        "protocol": "freedom",
+        "settings": { "domainStrategy": "UseIP" },
+        "tag": "direct"
+      },
+      {
+        "protocol": "blackhole",
+        "settings": { "response": { "type": "http" } },
+        "tag": "block"
+      }
+    ],
+    "routing": {
+      "domainStrategy": "IPIfNonMatch",
+      "rules": [
+        { "type": "field", "ip": ["geoip:private"], "outboundTag": "direct" },
+        { "type": "field", "network": "udp", "outboundTag": "TCP + REALITY" },
+        { "type": "field", "domain": ["geosite:category-ru"], "outboundTag": "direct" },
+        { "type": "field", "ip": ["geoip:ru"], "outboundTag": "direct" },
+        { "type": "field", "network": "tcp", "outboundTag": "TCP + REALITY" }
+      ]
     },
-    {
-      "protocol": "freedom",
-      "settings": { "domainStrategy": "UseIP" },
-      "tag": "direct"
-    },
-    {
-      "protocol": "blackhole",
-      "settings": { "response": { "type": "http" } },
-      "tag": "block"
-    }
-  ],
-  "routing": {
-    "domainStrategy": "IPIfNonMatch",
-    "rules": [
-      { "type": "field", "ip": ["geoip:private"], "outboundTag": "direct" },
-      { "type": "field", "network": "udp", "outboundTag": "proxy" },
-      { "type": "field", "domain": ["geosite:category-ru"], "outboundTag": "direct" },
-      { "type": "field", "ip": ["geoip:ru"], "outboundTag": "direct" },
-      { "type": "field", "network": "tcp", "outboundTag": "proxy" }
-    ]
+    "remarks": "Обход [TCP + REALITY]",
+    "meta": { "serverDescription": " " }
   },
-  "remarks": "Универсальный Обход",
-  "meta": { "serverDescription": " " }
-}
+  {
+    "inbounds": [
+      {
+        "listen": "127.0.0.1",
+        "port": 10808,
+        "protocol": "socks",
+        "settings": {
+          "allowTransparent": false,
+          "auth": "noauth",
+          "udp": true
+        },
+        "sniffing": {
+          "destOverride": ["http", "tls", "quic"],
+          "enabled": true,
+          "metadataOnly": false,
+          "routeOnly": false
+        },
+        "tag": "socks"
+      },
+      {
+        "listen": "127.0.0.1",
+        "port": 10809,
+        "protocol": "http",
+        "settings": {},
+        "sniffing": {
+          "destOverride": ["http", "tls", "quic"],
+          "enabled": true,
+          "metadataOnly": false,
+          "routeOnly": false
+        },
+        "tag": "http"
+      }
+    ],
+    "outbounds": [
+      {
+        "tag": "TCP + REALITY",
+        "protocol": "vless",
+        "settings": {
+          "vnext": [
+            {
+              "address": "188.225.62.104",
+              "port": 8443,
+              "users": [
+                {
+                  "id": "3b6400cc-103c-4281-9dc6-a32c6772a982",
+                  "encryption": "none",
+                  "flow": "xtls-rprx-vision"
+                }
+              ]
+            }
+          ]
+        },
+        "streamSettings": {
+          "network": "tcp",
+          "security": "reality",
+          "realitySettings": {
+            "serverName": "max.ru",
+            "fingerprint": "firefox",
+            "publicKey": "AiG06E-jizo9xtBbulKQvdQqhZfobZJBTQIKkaDjaiU",
+            "shortId": "a1b2c3d4e5",
+            "spiderX": ""
+          }
+        }
+      },
+      {
+        "tag": "xHTTP + TLS",
+        "protocol": "vless",
+        "settings": {
+          "vnext": [
+            {
+              "address": "91.215.42.63",
+              "port": 443,
+              "users": [
+                {
+                  "id": "3b6400cc-103c-4281-9dc6-a32c6772a982",
+                  "encryption": "none",
+                  "flow": ""
+                }
+              ]
+            }
+          ]
+        },
+        "streamSettings": {
+          "network": "xhttp",
+          "security": "tls",
+          "tlsSettings": {
+            "serverName": "me.nehtar.ru",
+            "fingerprint": "firefox",
+            "alpn": [
+              "h2",
+              "http/1.1"
+            ]
+          },
+          "xhttpSettings": {
+            "host": "me.nehtar.ru",
+            "path": "/api/orders/loadChunk/",
+            "mode": "packet-up",
+            "extra": {
+              "xmux": {
+                "cMaxLifetimeMs": 0,
+                "cMaxReuseTimes": 66,
+                "maxConnections": 1,
+                "hMaxRequestTimes": 480,
+                "hMaxReusableSecs": 1260
+              },
+              "seqKey": "id",
+              "sessionKey": "auth",
+              "noSSEHeader": true,
+              "xPaddingKey": "xss",
+              "seqPlacement": "query",
+              "sessionIDKey": "auth",
+              "uplinkDataKey": "X-Ver",
+              "xPaddingBytes": 550,
+              "sessionIDTable": "alphabet",
+              "xPaddingHeader": "api_v1",
+              "xPaddingMethod": "tokenish",
+              "sessionIDLength": 20,
+              "sessionPlacement": "query",
+              "uplinkHTTPMethod": "GET",
+              "xPaddingObfsMode": true,
+              "xPaddingPlacement": "query",
+              "sessionIDPlacement": "query",
+              "uplinkDataPlacement": "body",
+              "scStreamUpServerSecs": 50
+            }
+          }
+        }
+      },
+      {
+        "protocol": "freedom",
+        "settings": { "domainStrategy": "UseIP" },
+        "tag": "direct"
+      },
+      {
+        "protocol": "blackhole",
+        "settings": { "response": { "type": "http" } },
+        "tag": "block"
+      }
+    ],
+    "routing": {
+      "domainStrategy": "IPIfNonMatch",
+      "rules": [
+        { "type": "field", "ip": ["geoip:private"], "outboundTag": "direct" },
+        { "type": "field", "network": "udp", "outboundTag": "xHTTP + TLS" },
+        { "type": "field", "domain": ["geosite:category-ru"], "outboundTag": "direct" },
+        { "type": "field", "ip": ["geoip:ru"], "outboundTag": "direct" },
+        { "type": "field", "network": "tcp", "outboundTag": "xHTTP + TLS" }
+      ]
+    },
+    "remarks": "Обход [xHTTP + TLS]",
+    "meta": { "serverDescription": " " }
+  }
+]
