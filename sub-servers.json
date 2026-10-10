@@ -1,105 +1,302 @@
-{
-  "dns": {
-    "servers": [
-      "1.1.1.1",
-      "1.0.0.1"
-    ],
-    "queryStrategy": "UseIP"
-  },
-  "routing": {
-    "rules": [
+[
+  {
+    "remarks": "🇸🇪 Сервер #1 | Быстрый YouTube",
+    "meta": { "serverDescription": "YouTube: без рекламы (без заблокированного в РФ контента)" },
+    "inbounds": [
       {
-        "type": "field",
-        "protocol": [
-          "bittorrent"
-        ],
-        "outboundTag": "direct"
+        "listen": "127.0.0.1",
+        "port": 10808,
+        "protocol": "socks",
+        "settings": { "allowTransparent": false, "auth": "noauth", "udp": true },
+        "sniffing": {
+          "destOverride": ["http", "tls", "quic"],
+          "enabled": true,
+          "metadataOnly": false,
+          "routeOnly": false
+        },
+        "tag": "socks"
+      },
+      {
+        "listen": "127.0.0.1",
+        "port": 10809,
+        "protocol": "http",
+        "settings": {},
+        "sniffing": {
+          "destOverride": ["http", "tls", "quic"],
+          "enabled": true,
+          "metadataOnly": false,
+          "routeOnly": false
+        },
+        "tag": "http"
       }
     ],
-    "domainMatcher": "hybrid",
-    "domainStrategy": "IPIfNonMatch"
-  },
-  "inbounds": [
-    {
-      "tag": "socks",
-      "port": 10808,
-      "listen": "127.0.0.1",
-      "protocol": "socks",
-      "settings": {
-        "udp": true,
-        "auth": "noauth"
-      },
-      "sniffing": {
-        "enabled": true,
-        "routeOnly": false,
-        "destOverride": [
-          "http",
-          "tls",
-          "quic"
-        ]
-      }
-    },
-    {
-      "tag": "http",
-      "port": 10809,
-      "listen": "127.0.0.1",
-      "protocol": "http",
-      "settings": {
-        "allowTransparent": false
-      },
-      "sniffing": {
-        "enabled": true,
-        "routeOnly": false,
-        "destOverride": [
-          "http",
-          "tls",
-          "quic"
-        ]
-      }
-    }
-  ],
-  "outbounds": [
-    {
-      "tag": "proxy",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "217.19.122.38",
-            "port": 4644,
-            "users": [
-              {
-                "id": "6519fc18-32ad-4ca7-aebc-450a47767cb1",
-                "encryption": "none",
-                "flow": "xtls-rprx-vision"
-              }
-            ]
+    "outbounds": [
+      {
+        "protocol": "trojan",
+        "settings": {
+          "servers": [
+            {
+              "address": "2.27.23.210",
+              "port": 4433,
+              "password": "8-EYnDGVaKyJXWI-5D9uqA"
+            }
+          ]
+        },
+        "streamSettings": {
+          "network": "ws",
+          "wsSettings": {
+            "path": "/trojan-ws",
+            "headers": { "Host": "sub.justvpnchik.fun" }
+          },
+          "security": "tls",
+          "tlsSettings": {
+            "serverName": "sub.justvpnchik.fun",
+            "fingerprint": "firefox",
+            "alpn": ["http/1.1"]
           }
-        ]
+        },
+        "tag": "WS_Sweden"
       },
-      "streamSettings": {
-        "network": "tcp",
-        "tcpSettings": {},
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "max.ru",
-          "publicKey": "8HN93ir2luuEv_nYJ__3LzPNK3o5uzu_Q-TLmY_-2QE",
-          "shortId": "7567bdf6f9918109",
-          "fingerprint": "chrome"
+      {
+        "protocol": "vless",
+        "settings": {
+          "vnext": [
+            {
+              "address": "84.201.132.64",
+              "port": 7443,
+              "users": [
+                {
+                  "encryption": "none",
+                  "flow": "xtls-rprx-vision",
+                  "id": "7a274a69-fcf8-4a3f-b67b-74a051d2f186",
+                  "level": 8
+                }
+              ]
+            }
+          ]
+        },
+        "streamSettings": {
+          "network": "tcp",
+          "security": "reality",
+          "realitySettings": {
+            "fingerprint": "edge",
+            "publicKey": "Td6pxpk4V5hmDKU7_K0zV64VzUL1mEtI-F_6TCHNwjE",
+            "serverName": "io.ozone.ru",
+            "shortId": "ddd6",
+            "show": false
+          },
+          "tcpSettings": { "header": { "type": "none" } }
+        },
+        "tag": "TCP_1"
+      },
+      {
+        "protocol": "vless",
+        "settings": {
+          "vnext": [
+            {
+              "address": "84.201.132.64",
+              "port": 6443,
+              "users": [
+                {
+                  "encryption": "none",
+                  "flow": "xtls-rprx-vision",
+                  "id": "7a274a69-fcf8-4a3f-b67b-74a051d2f186",
+                  "level": 8
+                }
+              ]
+            }
+          ]
+        },
+        "streamSettings": {
+          "network": "tcp",
+          "security": "reality",
+          "realitySettings": {
+            "fingerprint": "edge",
+            "publicKey": "Td6pxpk4V5hmDKU7_K0zV64VzUL1mEtI-F_6TCHNwjE",
+            "serverName": "api-maps.yandex.ru",
+            "shortId": "ddd6",
+            "show": false
+          },
+          "tcpSettings": { "header": { "type": "none" } }
+        },
+        "tag": "TCP_2"
+      },
+      { "protocol": "freedom", "settings": { "domainStrategy": "UseIP" }, "tag": "direct" },
+      { "protocol": "blackhole", "settings": { "response": { "type": "http" } }, "tag": "block" }
+    ],
+    "observatory": {
+      "enableConcurrency": true,
+      "probeInterval": "0s",
+      "probeUrl": "http://www.gstatic.com/generate_204",
+      "subjectSelector": ["TCP_1", "TCP_2"]
+    },
+    "routing": {
+      "domainStrategy": "IPIfNonMatch",
+      "balancers": [
+        {
+          "tag": "TCP",
+          "selector": ["TCP_1", "TCP_2"],
+          "strategy": { "type": "leastPing" }
         }
-      }
-    },
-    {
-      "tag": "direct",
-      "protocol": "freedom"
-    },
-    {
-      "tag": "block",
-      "protocol": "blackhole"
+      ],
+      "rules": [
+        { "type": "field", "domain": ["geosite:youtube"], "balancerTag": "TCP" },
+        { "type": "field", "protocol": ["quic"], "outboundTag": "WS_Sweden" },
+        { "type": "field", "network": "udp", "balancerTag": "TCP" },
+        { "type": "field", "domain": ["geosite:category-ru"], "outboundTag": "direct" },
+        { "type": "field", "ip": ["geoip:ru"], "outboundTag": "direct" },
+        { "type": "field", "network": "tcp", "balancerTag": "TCP" }
+      ]
     }
-  ],
-  "remarks": "🇷🇺 ОБХОД БС • УНИВЕРСАЛЬНЫЙ",
-  "meta": {
-    "serverDescription": "🇷🇺 ОБХОД БС - УНИВЕРСАЛЬНЫЙ"
+  },
+  {
+    "remarks": "🇪🇺 Сервер #2 | Универсальный YouTube",
+    "meta": { "serverDescription": "YouTube: без рекламы + с заблокированным в РФ контентом" },
+    "inbounds": [
+      {
+        "listen": "127.0.0.1",
+        "port": 10808,
+        "protocol": "socks",
+        "settings": { "allowTransparent": false, "auth": "noauth", "udp": true },
+        "sniffing": {
+          "destOverride": ["http", "tls", "quic"],
+          "enabled": true,
+          "metadataOnly": false,
+          "routeOnly": false
+        },
+        "tag": "socks"
+      },
+      {
+        "listen": "127.0.0.1",
+        "port": 10809,
+        "protocol": "http",
+        "settings": {},
+        "sniffing": {
+          "destOverride": ["http", "tls", "quic"],
+          "enabled": true,
+          "metadataOnly": false,
+          "routeOnly": false
+        },
+        "tag": "http"
+      }
+    ],
+    "outbounds": [
+      {
+        "protocol": "trojan",
+        "settings": {
+          "servers": [
+            {
+              "address": "2.27.23.210",
+              "port": 4433,
+              "password": "8-EYnDGVaKyJXWI-5D9uqA"
+            }
+          ]
+        },
+        "streamSettings": {
+          "network": "ws",
+          "wsSettings": {
+            "path": "/trojan-ws",
+            "headers": { "Host": "sub.justvpnchik.fun" }
+          },
+          "security": "tls",
+          "tlsSettings": {
+            "serverName": "sub.justvpnchik.fun",
+            "fingerprint": "firefox",
+            "alpn": ["http/1.1"]
+          }
+        },
+        "tag": "WS_Sweden"
+      },
+      {
+        "protocol": "vless",
+        "settings": {
+          "vnext": [
+            {
+              "address": "84.201.132.64",
+              "port": 7443,
+              "users": [
+                {
+                  "encryption": "none",
+                  "flow": "xtls-rprx-vision",
+                  "id": "7a274a69-fcf8-4a3f-b67b-74a051d2f186",
+                  "level": 8
+                }
+              ]
+            }
+          ]
+        },
+        "streamSettings": {
+          "network": "tcp",
+          "security": "reality",
+          "realitySettings": {
+            "fingerprint": "edge",
+            "publicKey": "Td6pxpk4V5hmDKU7_K0zV64VzUL1mEtI-F_6TCHNwjE",
+            "serverName": "io.ozone.ru",
+            "shortId": "ddd6",
+            "show": false
+          },
+          "tcpSettings": { "header": { "type": "none" } }
+        },
+        "tag": "TCP_1"
+      },
+      {
+        "protocol": "vless",
+        "settings": {
+          "vnext": [
+            {
+              "address": "84.201.132.64",
+              "port": 6443,
+              "users": [
+                {
+                  "encryption": "none",
+                  "flow": "xtls-rprx-vision",
+                  "id": "7a274a69-fcf8-4a3f-b67b-74a051d2f186",
+                  "level": 8
+                }
+              ]
+            }
+          ]
+        },
+        "streamSettings": {
+          "network": "tcp",
+          "security": "reality",
+          "realitySettings": {
+            "fingerprint": "edge",
+            "publicKey": "Td6pxpk4V5hmDKU7_K0zV64VzUL1mEtI-F_6TCHNwjE",
+            "serverName": "api-maps.yandex.ru",
+            "shortId": "ddd6",
+            "show": false
+          },
+          "tcpSettings": { "header": { "type": "none" } }
+        },
+        "tag": "TCP_2"
+      },
+      { "protocol": "freedom", "settings": { "domainStrategy": "UseIP" }, "tag": "direct" },
+      { "protocol": "blackhole", "settings": { "response": { "type": "http" } }, "tag": "block" }
+    ],
+    "observatory": {
+      "enableConcurrency": true,
+      "probeInterval": "0s",
+      "probeUrl": "http://www.gstatic.com/generate_204",
+      "subjectSelector": ["TCP_1", "TCP_2"]
+    },
+    "routing": {
+      "domainStrategy": "IPIfNonMatch",
+      "balancers": [
+        {
+          "tag": "TCP",
+          "selector": ["TCP_1", "TCP_2"],
+          "strategy": { "type": "leastPing" }
+        }
+      ],
+      "rules": [
+        { "type": "field", "domain": ["geosite:youtube"], "outboundTag": "WS_Sweden" },
+        { "type": "field", "protocol": ["quic"], "outboundTag": "WS_Sweden" },
+        { "type": "field", "network": "udp", "balancerTag": "TCP" },
+        { "type": "field", "domain": ["geosite:category-ru"], "outboundTag": "direct" },
+        { "type": "field", "ip": ["geoip:ru"], "outboundTag": "direct" },
+        { "type": "field", "network": "tcp", "balancerTag": "TCP" }
+      ]
+    }
   }
-}
+]
