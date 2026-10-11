@@ -1,6 +1,6 @@
 [
   {
-    "remarks": "🇸🇪 Сервер #1 | Быстрый YouTube",
+    "remarks": "🇷🇺 Режим #1 | Быстрый YouTube",
     "meta": { "serverDescription": "YouTube: без рекламы (без заблокированного в РФ контента)" },
     "inbounds": [
       {
@@ -62,8 +62,8 @@
         "settings": {
           "vnext": [
             {
-              "address": "84.201.132.64",
-              "port": 7443,
+              "address": "5.42.105.10",
+              "port": 443,
               "users": [
                 {
                   "encryption": "none",
@@ -79,10 +79,9 @@
           "network": "tcp",
           "security": "reality",
           "realitySettings": {
-            "fingerprint": "edge",
+            "fingerprint": "firefox",
             "publicKey": "Td6pxpk4V5hmDKU7_K0zV64VzUL1mEtI-F_6TCHNwjE",
-            "serverName": "io.ozone.ru",
-            "shortId": "ddd6",
+            "serverName": "api-1-l.tarnex.link",
             "show": false
           },
           "tcpSettings": { "header": { "type": "none" } }
@@ -94,8 +93,8 @@
         "settings": {
           "vnext": [
             {
-              "address": "84.201.132.64",
-              "port": 6443,
+              "address": "5.42.105.10",
+              "port": 443,
               "users": [
                 {
                   "encryption": "none",
@@ -111,10 +110,9 @@
           "network": "tcp",
           "security": "reality",
           "realitySettings": {
-            "fingerprint": "edge",
+            "fingerprint": "firefox",
             "publicKey": "Td6pxpk4V5hmDKU7_K0zV64VzUL1mEtI-F_6TCHNwjE",
-            "serverName": "api-maps.yandex.ru",
-            "shortId": "ddd6",
+            "serverName": "api-1-l.tarnex.link",
             "show": false
           },
           "tcpSettings": { "header": { "type": "none" } }
@@ -150,7 +148,7 @@
     }
   },
   {
-    "remarks": "🇪🇺 Сервер #2 | Универсальный YouTube",
+    "remarks": "🇸🇪 Режим #2 | Универсальный YouTube",
     "meta": { "serverDescription": "YouTube: без рекламы + с заблокированным в РФ контентом" },
     "inbounds": [
       {
@@ -212,8 +210,8 @@
         "settings": {
           "vnext": [
             {
-              "address": "84.201.132.64",
-              "port": 7443,
+              "address": "5.42.105.10",
+              "port": 443,
               "users": [
                 {
                   "encryption": "none",
@@ -229,10 +227,9 @@
           "network": "tcp",
           "security": "reality",
           "realitySettings": {
-            "fingerprint": "edge",
+            "fingerprint": "firefox",
             "publicKey": "Td6pxpk4V5hmDKU7_K0zV64VzUL1mEtI-F_6TCHNwjE",
-            "serverName": "io.ozone.ru",
-            "shortId": "ddd6",
+            "serverName": "api-1-l.tarnex.link",
             "show": false
           },
           "tcpSettings": { "header": { "type": "none" } }
@@ -244,8 +241,8 @@
         "settings": {
           "vnext": [
             {
-              "address": "84.201.132.64",
-              "port": 6443,
+              "address": "5.42.105.10",
+              "port": 443,
               "users": [
                 {
                   "encryption": "none",
@@ -261,10 +258,9 @@
           "network": "tcp",
           "security": "reality",
           "realitySettings": {
-            "fingerprint": "edge",
+            "fingerprint": "firefox",
             "publicKey": "Td6pxpk4V5hmDKU7_K0zV64VzUL1mEtI-F_6TCHNwjE",
-            "serverName": "api-maps.yandex.ru",
-            "shortId": "ddd6",
+            "serverName": "api-1-l.tarnex.link",
             "show": false
           },
           "tcpSettings": { "header": { "type": "none" } }
@@ -293,6 +289,154 @@
         { "type": "field", "domain": ["geosite:youtube"], "outboundTag": "WS_Sweden" },
         { "type": "field", "protocol": ["quic"], "outboundTag": "WS_Sweden" },
         { "type": "field", "network": "udp", "balancerTag": "TCP" },
+        { "type": "field", "domain": ["geosite:category-ru"], "outboundTag": "direct" },
+        { "type": "field", "ip": ["geoip:ru"], "outboundTag": "direct" },
+        { "type": "field", "network": "tcp", "balancerTag": "TCP" }
+      ]
+    }
+  },
+  {
+    "remarks": "🇪🇺 Режим #3 | Игры и звонки напрямую",
+    "meta": { "serverDescription": "Игры и звонки: без задержек (не работают при белых списках)" },
+    "inbounds": [
+      {
+        "listen": "127.0.0.1",
+        "port": 10808,
+        "protocol": "socks",
+        "settings": { "allowTransparent": false, "auth": "noauth", "udp": true },
+        "sniffing": {
+          "destOverride": ["http", "tls", "quic"],
+          "enabled": true,
+          "metadataOnly": false,
+          "routeOnly": false
+        },
+        "tag": "socks"
+      },
+      {
+        "listen": "127.0.0.1",
+        "port": 10809,
+        "protocol": "http",
+        "settings": {},
+        "sniffing": {
+          "destOverride": ["http", "tls", "quic"],
+          "enabled": true,
+          "metadataOnly": false,
+          "routeOnly": false
+        },
+        "tag": "http"
+      }
+    ],
+    "outbounds": [
+      {
+        "protocol": "trojan",
+        "settings": {
+          "servers": [
+            {
+              "address": "2.27.23.210",
+              "port": 4433,
+              "password": "8-EYnDGVaKyJXWI-5D9uqA"
+            }
+          ]
+        },
+        "streamSettings": {
+          "network": "ws",
+          "wsSettings": {
+            "path": "/trojan-ws",
+            "headers": { "Host": "sub.justvpnchik.fun" }
+          },
+          "security": "tls",
+          "tlsSettings": {
+            "serverName": "sub.justvpnchik.fun",
+            "fingerprint": "firefox",
+            "alpn": ["http/1.1"]
+          }
+        },
+        "tag": "WS_Sweden"
+      },
+      {
+        "protocol": "vless",
+        "settings": {
+          "vnext": [
+            {
+              "address": "5.42.105.10",
+              "port": 443,
+              "users": [
+                {
+                  "encryption": "none",
+                  "flow": "xtls-rprx-vision",
+                  "id": "7a274a69-fcf8-4a3f-b67b-74a051d2f186",
+                  "level": 8
+                }
+              ]
+            }
+          ]
+        },
+        "streamSettings": {
+          "network": "tcp",
+          "security": "reality",
+          "realitySettings": {
+            "fingerprint": "firefox",
+            "publicKey": "Td6pxpk4V5hmDKU7_K0zV64VzUL1mEtI-F_6TCHNwjE",
+            "serverName": "api-1-l.tarnex.link",
+            "show": false
+          },
+          "tcpSettings": { "header": { "type": "none" } }
+        },
+        "tag": "TCP_1"
+      },
+      {
+        "protocol": "vless",
+        "settings": {
+          "vnext": [
+            {
+              "address": "5.42.105.10",
+              "port": 443,
+              "users": [
+                {
+                  "encryption": "none",
+                  "flow": "xtls-rprx-vision",
+                  "id": "7a274a69-fcf8-4a3f-b67b-74a051d2f186",
+                  "level": 8
+                }
+              ]
+            }
+          ]
+        },
+        "streamSettings": {
+          "network": "tcp",
+          "security": "reality",
+          "realitySettings": {
+            "fingerprint": "firefox",
+            "publicKey": "Td6pxpk4V5hmDKU7_K0zV64VzUL1mEtI-F_6TCHNwjE",
+            "serverName": "api-1-l.tarnex.link",
+            "show": false
+          },
+          "tcpSettings": { "header": { "type": "none" } }
+        },
+        "tag": "TCP_2"
+      },
+      { "protocol": "freedom", "settings": { "domainStrategy": "UseIP" }, "tag": "direct" },
+      { "protocol": "blackhole", "settings": { "response": { "type": "http" } }, "tag": "block" }
+    ],
+    "observatory": {
+      "enableConcurrency": true,
+      "probeInterval": "0s",
+      "probeUrl": "http://www.gstatic.com/generate_204",
+      "subjectSelector": ["TCP_1", "TCP_2"]
+    },
+    "routing": {
+      "domainStrategy": "IPIfNonMatch",
+      "balancers": [
+        {
+          "tag": "TCP",
+          "selector": ["TCP_1", "TCP_2"],
+          "strategy": { "type": "leastPing" }
+        }
+      ],
+      "rules": [
+        { "type": "field", "domain": ["geosite:youtube"], "outboundTag": "WS_Sweden" },
+        { "type": "field", "protocol": ["quic"], "outboundTag": "WS_Sweden" },
+        { "type": "field", "network": "udp", "outboundTag": "direct" },
         { "type": "field", "domain": ["geosite:category-ru"], "outboundTag": "direct" },
         { "type": "field", "ip": ["geoip:ru"], "outboundTag": "direct" },
         { "type": "field", "network": "tcp", "balancerTag": "TCP" }
