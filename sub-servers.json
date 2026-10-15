@@ -36,7 +36,7 @@
         "settings": {
           "servers": [
             {
-              "address": "2.27.23.210",
+              "address": "45.84.222.156",
               "port": 2083,
               "password": "8-EYnDGVaKyJXWI-5D9uqA"
             }
@@ -55,7 +55,7 @@
             "alpn": ["http/1.1"]
           }
         },
-        "tag": "WS_Sweden"
+        "tag": "WS_Netherlands"
       },
       {
         "protocol": "vless",
@@ -139,7 +139,7 @@
       ],
       "rules": [
         { "type": "field", "domain": ["geosite:youtube"], "balancerTag": "TCP" },
-        { "type": "field", "protocol": ["quic"], "outboundTag": "WS_Sweden" },
+        { "type": "field", "protocol": ["quic"], "outboundTag": "WS_Netherlands" },
         { "type": "field", "network": "udp", "balancerTag": "TCP" },
         { "type": "field", "domain": ["geosite:category-ru"], "outboundTag": "direct" },
         { "type": "field", "ip": ["geoip:ru"], "outboundTag": "direct" },
@@ -184,7 +184,7 @@
         "settings": {
           "servers": [
             {
-              "address": "2.27.23.210",
+              "address": "45.84.222.156",
               "port": 2083,
               "password": "8-EYnDGVaKyJXWI-5D9uqA"
             }
@@ -203,7 +203,7 @@
             "alpn": ["http/1.1"]
           }
         },
-        "tag": "WS_Sweden"
+        "tag": "WS_Netherlands"
       },
       {
         "protocol": "vless",
@@ -286,8 +286,8 @@
         }
       ],
       "rules": [
-        { "type": "field", "domain": ["geosite:youtube"], "outboundTag": "WS_Sweden" },
-        { "type": "field", "protocol": ["quic"], "outboundTag": "WS_Sweden" },
+        { "type": "field", "domain": ["geosite:youtube"], "outboundTag": "WS_Netherlands" },
+        { "type": "field", "protocol": ["quic"], "outboundTag": "WS_Netherlands" },
         { "type": "field", "network": "udp", "balancerTag": "TCP" },
         { "type": "field", "domain": ["geosite:category-ru"], "outboundTag": "direct" },
         { "type": "field", "ip": ["geoip:ru"], "outboundTag": "direct" },
@@ -332,7 +332,7 @@
         "settings": {
           "servers": [
             {
-              "address": "2.27.23.210",
+              "address": "45.84.222.156",
               "port": 2083,
               "password": "8-EYnDGVaKyJXWI-5D9uqA"
             }
@@ -351,7 +351,7 @@
             "alpn": ["http/1.1"]
           }
         },
-        "tag": "WS_Sweden"
+        "tag": "WS_Netherlands"
       },
       {
         "protocol": "vless",
@@ -434,8 +434,8 @@
         }
       ],
       "rules": [
-        { "type": "field", "domain": ["geosite:youtube"], "outboundTag": "WS_Sweden" },
-        { "type": "field", "protocol": ["quic"], "outboundTag": "WS_Sweden" },
+        { "type": "field", "domain": ["geosite:youtube"], "outboundTag": "WS_Netherlands" },
+        { "type": "field", "protocol": ["quic"], "outboundTag": "WS_Netherlands" },
         { "type": "field", "network": "udp", "outboundTag": "direct" },
         { "type": "field", "domain": ["geosite:category-ru"], "outboundTag": "direct" },
         { "type": "field", "ip": ["geoip:ru"], "outboundTag": "direct" },
@@ -443,4 +443,4 @@
       ]
     }
   }
-]
+          ]
