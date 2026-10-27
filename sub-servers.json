@@ -36,7 +36,7 @@
         "settings": {
           "servers": [
             {
-              "address": "2.27.203.4",
+              "address": "2.27.23.210",
               "port": 2083,
               "password": "8-EYnDGVaKyJXWI-5D9uqA"
             }
@@ -184,7 +184,7 @@
         "settings": {
           "servers": [
             {
-              "address": "2.27.203.4",
+              "address": "2.26.5.176",
               "port": 2083,
               "password": "8-EYnDGVaKyJXWI-5D9uqA"
             }
