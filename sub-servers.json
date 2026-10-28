@@ -36,7 +36,7 @@
         "settings": {
           "servers": [
             {
-              "address": "2.27.23.210",
+              "address": "2.27.203.4",
               "port": 2083,
               "password": "8-EYnDGVaKyJXWI-5D9uqA"
             }
@@ -55,95 +55,46 @@
             "alpn": ["http/1.1"]
           }
         },
-        "tag": "WS_Netherlands"
+        "tag": "WS_Finland"
       },
       {
-        "protocol": "vless",
+        "protocol": "trojan",
         "settings": {
-          "vnext": [
+          "servers": [
             {
-              "address": "5.42.105.10",
-              "port": 443,
-              "users": [
-                {
-                  "encryption": "none",
-                  "flow": "xtls-rprx-vision",
-                  "id": "7a274a69-fcf8-4a3f-b67b-74a051d2f186",
-                  "level": 8
-                }
-              ]
+              "address": "2.26.5.176",
+              "port": 2083,
+              "password": "8-EYnDGVaKyJXWI-5D9uqA"
             }
           ]
         },
         "streamSettings": {
-          "network": "tcp",
-          "security": "reality",
-          "realitySettings": {
-            "fingerprint": "firefox",
-            "publicKey": "Td6pxpk4V5hmDKU7_K0zV64VzUL1mEtI-F_6TCHNwjE",
-            "serverName": "api-1-l.tarnex.link",
-            "show": false
+          "network": "ws",
+          "wsSettings": {
+            "path": "/trojan-ws",
+            "headers": { "Host": "sub.justvpnchik.fun" }
           },
-          "tcpSettings": { "header": { "type": "none" } }
-        },
-        "tag": "TCP_1"
-      },
-      {
-        "protocol": "vless",
-        "settings": {
-          "vnext": [
-            {
-              "address": "5.42.105.10",
-              "port": 443,
-              "users": [
-                {
-                  "encryption": "none",
-                  "flow": "xtls-rprx-vision",
-                  "id": "7a274a69-fcf8-4a3f-b67b-74a051d2f186",
-                  "level": 8
-                }
-              ]
-            }
-          ]
-        },
-        "streamSettings": {
-          "network": "tcp",
-          "security": "reality",
-          "realitySettings": {
+          "security": "tls",
+          "tlsSettings": {
+            "serverName": "sub.justvpnchik.fun",
             "fingerprint": "firefox",
-            "publicKey": "Td6pxpk4V5hmDKU7_K0zV64VzUL1mEtI-F_6TCHNwjE",
-            "serverName": "api-1-l.tarnex.link",
-            "show": false
-          },
-          "tcpSettings": { "header": { "type": "none" } }
+            "alpn": ["http/1.1"]
+          }
         },
-        "tag": "TCP_2"
+        "tag": "WS_Poland"
       },
       { "protocol": "freedom", "settings": { "domainStrategy": "UseIP" }, "tag": "direct" },
       { "protocol": "blackhole", "settings": { "response": { "type": "http" } }, "tag": "block" }
     ],
-    "observatory": {
-      "enableConcurrency": true,
-      "probeInterval": "0s",
-      "probeUrl": "http://www.gstatic.com/generate_204",
-      "subjectSelector": ["TCP_1", "TCP_2"]
-    },
     "routing": {
       "domainStrategy": "IPIfNonMatch",
-      "balancers": [
-        {
-          "tag": "TCP",
-          "selector": ["TCP_1", "TCP_2"],
-          "strategy": { "type": "leastPing" }
-        }
-      ],
       "rules": [
-        { "type": "field", "domain": ["geosite:youtube"], "outboundTag": "WS_Netherlands" },
-        { "type": "field", "protocol": ["quic"], "outboundTag": "WS_Netherlands" },
-        { "type": "field", "network": "udp", "balancerTag": "TCP" },
+        { "type": "field", "domain": ["geosite:youtube"], "outboundTag": "WS_Poland" },
+        { "type": "field", "protocol": ["quic"], "outboundTag": "WS_Finland" },
+        { "type": "field", "network": "udp", "outboundTag": "WS_Finland" },
         { "type": "field", "domain": ["geosite:category-ru"], "outboundTag": "direct" },
         { "type": "field", "ip": ["geoip:ru"], "outboundTag": "direct" },
-        { "type": "field", "network": "tcp", "balancerTag": "TCP" }
+        { "type": "field", "network": "tcp", "outboundTag": "WS_Finland" }
       ]
     }
   },
@@ -184,6 +135,32 @@
         "settings": {
           "servers": [
             {
+              "address": "2.27.203.4",
+              "port": 2083,
+              "password": "8-EYnDGVaKyJXWI-5D9uqA"
+            }
+          ]
+        },
+        "streamSettings": {
+          "network": "ws",
+          "wsSettings": {
+            "path": "/trojan-ws",
+            "headers": { "Host": "sub.justvpnchik.fun" }
+          },
+          "security": "tls",
+          "tlsSettings": {
+            "serverName": "sub.justvpnchik.fun",
+            "fingerprint": "firefox",
+            "alpn": ["http/1.1"]
+          }
+        },
+        "tag": "WS_Finland"
+      },
+      {
+        "protocol": "trojan",
+        "settings": {
+          "servers": [
+            {
               "address": "2.26.5.176",
               "port": 2083,
               "password": "8-EYnDGVaKyJXWI-5D9uqA"
@@ -203,95 +180,20 @@
             "alpn": ["http/1.1"]
           }
         },
-        "tag": "WS_Netherlands"
-      },
-      {
-        "protocol": "vless",
-        "settings": {
-          "vnext": [
-            {
-              "address": "5.42.105.10",
-              "port": 443,
-              "users": [
-                {
-                  "encryption": "none",
-                  "flow": "xtls-rprx-vision",
-                  "id": "7a274a69-fcf8-4a3f-b67b-74a051d2f186",
-                  "level": 8
-                }
-              ]
-            }
-          ]
-        },
-        "streamSettings": {
-          "network": "tcp",
-          "security": "reality",
-          "realitySettings": {
-            "fingerprint": "firefox",
-            "publicKey": "Td6pxpk4V5hmDKU7_K0zV64VzUL1mEtI-F_6TCHNwjE",
-            "serverName": "api-1-l.tarnex.link",
-            "show": false
-          },
-          "tcpSettings": { "header": { "type": "none" } }
-        },
-        "tag": "TCP_1"
-      },
-      {
-        "protocol": "vless",
-        "settings": {
-          "vnext": [
-            {
-              "address": "5.42.105.10",
-              "port": 443,
-              "users": [
-                {
-                  "encryption": "none",
-                  "flow": "xtls-rprx-vision",
-                  "id": "7a274a69-fcf8-4a3f-b67b-74a051d2f186",
-                  "level": 8
-                }
-              ]
-            }
-          ]
-        },
-        "streamSettings": {
-          "network": "tcp",
-          "security": "reality",
-          "realitySettings": {
-            "fingerprint": "firefox",
-            "publicKey": "Td6pxpk4V5hmDKU7_K0zV64VzUL1mEtI-F_6TCHNwjE",
-            "serverName": "api-1-l.tarnex.link",
-            "show": false
-          },
-          "tcpSettings": { "header": { "type": "none" } }
-        },
-        "tag": "TCP_2"
+        "tag": "WS_Poland"
       },
       { "protocol": "freedom", "settings": { "domainStrategy": "UseIP" }, "tag": "direct" },
       { "protocol": "blackhole", "settings": { "response": { "type": "http" } }, "tag": "block" }
     ],
-    "observatory": {
-      "enableConcurrency": true,
-      "probeInterval": "0s",
-      "probeUrl": "http://www.gstatic.com/generate_204",
-      "subjectSelector": ["TCP_1", "TCP_2"]
-    },
     "routing": {
       "domainStrategy": "IPIfNonMatch",
-      "balancers": [
-        {
-          "tag": "TCP",
-          "selector": ["TCP_1", "TCP_2"],
-          "strategy": { "type": "leastPing" }
-        }
-      ],
       "rules": [
-        { "type": "field", "domain": ["geosite:youtube"], "outboundTag": "WS_Netherlands" },
-        { "type": "field", "protocol": ["quic"], "outboundTag": "WS_Netherlands" },
+        { "type": "field", "domain": ["geosite:youtube"], "outboundTag": "WS_Poland" },
+        { "type": "field", "protocol": ["quic"], "outboundTag": "WS_Finland" },
         { "type": "field", "network": "udp", "outboundTag": "direct" },
         { "type": "field", "domain": ["geosite:category-ru"], "outboundTag": "direct" },
         { "type": "field", "ip": ["geoip:ru"], "outboundTag": "direct" },
-        { "type": "field", "network": "tcp", "balancerTag": "TCP" }
+        { "type": "field", "network": "tcp", "outboundTag": "WS_Finland" }
       ]
     }
   }
