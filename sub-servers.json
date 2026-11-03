@@ -32,20 +32,25 @@
     ],
     "outbounds": [
       {
-        "protocol": "trojan",
+        "protocol": "vless",
         "settings": {
-          "servers": [
+          "vnext": [
             {
-              "address": "2.27.203.4",
-              "port": 2083,
-              "password": "8-EYnDGVaKyJXWI-5D9uqA"
+              "address": "177.202.67.198",
+              "port": 2053,
+              "users": [
+                {
+                  "id": "931aae51-5df7-4bb0-869e-acc7e23c54e7",
+                  "encryption": "none"
+                }
+              ]
             }
           ]
         },
         "streamSettings": {
           "network": "ws",
           "wsSettings": {
-            "path": "/trojan-ws",
+            "path": "/vless-ws",
             "headers": { "Host": "sub.justvpnchik.fun" }
           },
           "security": "tls",
@@ -55,33 +60,7 @@
             "alpn": ["http/1.1"]
           }
         },
-        "tag": "WS_Finland"
-      },
-      {
-        "protocol": "trojan",
-        "settings": {
-          "servers": [
-            {
-              "address": "2.26.5.176",
-              "port": 2083,
-              "password": "8-EYnDGVaKyJXWI-5D9uqA"
-            }
-          ]
-        },
-        "streamSettings": {
-          "network": "ws",
-          "wsSettings": {
-            "path": "/trojan-ws",
-            "headers": { "Host": "sub.justvpnchik.fun" }
-          },
-          "security": "tls",
-          "tlsSettings": {
-            "serverName": "sub.justvpnchik.fun",
-            "fingerprint": "firefox",
-            "alpn": ["http/1.1"]
-          }
-        },
-        "tag": "WS_Poland"
+        "tag": "VLESS_Main"
       },
       { "protocol": "freedom", "settings": { "domainStrategy": "UseIP" }, "tag": "direct" },
       { "protocol": "blackhole", "settings": { "response": { "type": "http" } }, "tag": "block" }
@@ -89,12 +68,12 @@
     "routing": {
       "domainStrategy": "IPIfNonMatch",
       "rules": [
-        { "type": "field", "domain": ["geosite:youtube"], "outboundTag": "WS_Poland" },
-        { "type": "field", "protocol": ["quic"], "outboundTag": "WS_Finland" },
-        { "type": "field", "network": "udp", "outboundTag": "WS_Finland" },
+        { "type": "field", "domain": ["geosite:youtube"], "outboundTag": "VLESS_Main" },
+        { "type": "field", "protocol": ["quic"], "outboundTag": "VLESS_Main" },
+        { "type": "field", "network": "udp", "outboundTag": "VLESS_Main" },
         { "type": "field", "domain": ["geosite:category-ru"], "outboundTag": "direct" },
         { "type": "field", "ip": ["geoip:ru"], "outboundTag": "direct" },
-        { "type": "field", "network": "tcp", "outboundTag": "WS_Finland" }
+        { "type": "field", "network": "tcp", "outboundTag": "VLESS_Main" }
       ]
     }
   },
@@ -131,20 +110,25 @@
     ],
     "outbounds": [
       {
-        "protocol": "trojan",
+        "protocol": "vless",
         "settings": {
-          "servers": [
+          "vnext": [
             {
-              "address": "2.27.203.4",
-              "port": 2083,
-              "password": "8-EYnDGVaKyJXWI-5D9uqA"
+              "address": "177.202.67.198",
+              "port": 2053,
+              "users": [
+                {
+                  "id": "931aae51-5df7-4bb0-869e-acc7e23c54e7",
+                  "encryption": "none"
+                }
+              ]
             }
           ]
         },
         "streamSettings": {
           "network": "ws",
           "wsSettings": {
-            "path": "/trojan-ws",
+            "path": "/vless-ws",
             "headers": { "Host": "sub.justvpnchik.fun" }
           },
           "security": "tls",
@@ -154,33 +138,7 @@
             "alpn": ["http/1.1"]
           }
         },
-        "tag": "WS_Finland"
-      },
-      {
-        "protocol": "trojan",
-        "settings": {
-          "servers": [
-            {
-              "address": "2.26.5.176",
-              "port": 2083,
-              "password": "8-EYnDGVaKyJXWI-5D9uqA"
-            }
-          ]
-        },
-        "streamSettings": {
-          "network": "ws",
-          "wsSettings": {
-            "path": "/trojan-ws",
-            "headers": { "Host": "sub.justvpnchik.fun" }
-          },
-          "security": "tls",
-          "tlsSettings": {
-            "serverName": "sub.justvpnchik.fun",
-            "fingerprint": "firefox",
-            "alpn": ["http/1.1"]
-          }
-        },
-        "tag": "WS_Poland"
+        "tag": "VLESS_Main"
       },
       { "protocol": "freedom", "settings": { "domainStrategy": "UseIP" }, "tag": "direct" },
       { "protocol": "blackhole", "settings": { "response": { "type": "http" } }, "tag": "block" }
@@ -188,12 +146,12 @@
     "routing": {
       "domainStrategy": "IPIfNonMatch",
       "rules": [
-        { "type": "field", "domain": ["geosite:youtube"], "outboundTag": "WS_Poland" },
-        { "type": "field", "protocol": ["quic"], "outboundTag": "WS_Finland" },
+        { "type": "field", "domain": ["geosite:youtube"], "outboundTag": "VLESS_Main" },
+        { "type": "field", "protocol": ["quic"], "outboundTag": "VLESS_Main" },
         { "type": "field", "network": "udp", "outboundTag": "direct" },
         { "type": "field", "domain": ["geosite:category-ru"], "outboundTag": "direct" },
         { "type": "field", "ip": ["geoip:ru"], "outboundTag": "direct" },
-        { "type": "field", "network": "tcp", "outboundTag": "WS_Finland" }
+        { "type": "field", "network": "tcp", "outboundTag": "VLESS_Main" }
       ]
     }
   }
