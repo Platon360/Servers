@@ -36,31 +36,29 @@
         "settings": {
           "vnext": [
             {
-              "address": "177.202.67.198",
-              "port": 2053,
+              "address": "37.18.14.6",
+              "port": 7446,
               "users": [
                 {
-                  "id": "931aae51-5df7-4bb0-869e-acc7e23c54e7",
-                  "encryption": "none"
+                  "id": "d6750ae2-cdc5-4e69-8ade-94a78ab8d4da",
+                  "encryption": "none",
+                  "flow": "xtls-rprx-vision"
                 }
               ]
             }
           ]
         },
         "streamSettings": {
-          "network": "ws",
-          "wsSettings": {
-            "path": "/vless-ws",
-            "headers": { "Host": "sub.justvpnchik.fun" }
-          },
-          "security": "tls",
-          "tlsSettings": {
-            "serverName": "sub.justvpnchik.fun",
+          "network": "tcp",
+          "security": "reality",
+          "realitySettings": {
+            "serverName": "ya.ru",
             "fingerprint": "firefox",
-            "alpn": ["http/1.1"]
+            "publicKey": "VrAm7icVE5-GhTc0ROVKG9I_WfC9zq83XmlzgFipmwc",
+            "shortId": "7a8b00f27ef3098d"
           }
         },
-        "tag": "VLESS_Main"
+        "tag": "VLESS_Reality"
       },
       { "protocol": "freedom", "settings": { "domainStrategy": "UseIP" }, "tag": "direct" },
       { "protocol": "blackhole", "settings": { "response": { "type": "http" } }, "tag": "block" }
@@ -68,12 +66,12 @@
     "routing": {
       "domainStrategy": "IPIfNonMatch",
       "rules": [
-        { "type": "field", "domain": ["geosite:youtube"], "outboundTag": "VLESS_Main" },
-        { "type": "field", "protocol": ["quic"], "outboundTag": "VLESS_Main" },
-        { "type": "field", "network": "udp", "outboundTag": "VLESS_Main" },
+        { "type": "field", "domain": ["geosite:youtube"], "outboundTag": "VLESS_Reality" },
+        { "type": "field", "protocol": ["quic"], "outboundTag": "VLESS_Reality" },
+        { "type": "field", "network": "udp", "outboundTag": "VLESS_Reality" },
         { "type": "field", "domain": ["geosite:category-ru"], "outboundTag": "direct" },
         { "type": "field", "ip": ["geoip:ru"], "outboundTag": "direct" },
-        { "type": "field", "network": "tcp", "outboundTag": "VLESS_Main" }
+        { "type": "field", "network": "tcp", "outboundTag": "VLESS_Reality" }
       ]
     }
   },
@@ -114,31 +112,29 @@
         "settings": {
           "vnext": [
             {
-              "address": "177.202.67.198",
-              "port": 2053,
+              "address": "37.18.14.6",
+              "port": 7446,
               "users": [
                 {
-                  "id": "931aae51-5df7-4bb0-869e-acc7e23c54e7",
-                  "encryption": "none"
+                  "id": "d6750ae2-cdc5-4e69-8ade-94a78ab8d4da",
+                  "encryption": "none",
+                  "flow": "xtls-rprx-vision"
                 }
               ]
             }
           ]
         },
         "streamSettings": {
-          "network": "ws",
-          "wsSettings": {
-            "path": "/vless-ws",
-            "headers": { "Host": "sub.justvpnchik.fun" }
-          },
-          "security": "tls",
-          "tlsSettings": {
-            "serverName": "sub.justvpnchik.fun",
+          "network": "tcp",
+          "security": "reality",
+          "realitySettings": {
+            "serverName": "ya.ru",
             "fingerprint": "firefox",
-            "alpn": ["http/1.1"]
+            "publicKey": "VrAm7icVE5-GhTc0ROVKG9I_WfC9zq83XmlzgFipmwc",
+            "shortId": "7a8b00f27ef3098d"
           }
         },
-        "tag": "VLESS_Main"
+        "tag": "VLESS_Reality"
       },
       { "protocol": "freedom", "settings": { "domainStrategy": "UseIP" }, "tag": "direct" },
       { "protocol": "blackhole", "settings": { "response": { "type": "http" } }, "tag": "block" }
@@ -146,12 +142,12 @@
     "routing": {
       "domainStrategy": "IPIfNonMatch",
       "rules": [
-        { "type": "field", "domain": ["geosite:youtube"], "outboundTag": "VLESS_Main" },
-        { "type": "field", "protocol": ["quic"], "outboundTag": "VLESS_Main" },
+        { "type": "field", "domain": ["geosite:youtube"], "outboundTag": "VLESS_Reality" },
+        { "type": "field", "protocol": ["quic"], "outboundTag": "VLESS_Reality" },
         { "type": "field", "network": "udp", "outboundTag": "direct" },
         { "type": "field", "domain": ["geosite:category-ru"], "outboundTag": "direct" },
         { "type": "field", "ip": ["geoip:ru"], "outboundTag": "direct" },
-        { "type": "field", "network": "tcp", "outboundTag": "VLESS_Main" }
+        { "type": "field", "network": "tcp", "outboundTag": "VLESS_Reality" }
       ]
     }
   }
