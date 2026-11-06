@@ -32,46 +32,83 @@
     ],
     "outbounds": [
       {
+        "tag": "VLESS_Main",
         "protocol": "vless",
         "settings": {
           "vnext": [
             {
-              "address": "37.18.14.6",
-              "port": 7446,
+              "address": "95.129.236.171",
+              "port": 443,
               "users": [
                 {
-                  "id": "d6750ae2-cdc5-4e69-8ade-94a78ab8d4da",
+                  "id": "8c5e1cd5-2717-4560-9f5e-7d152f72c2dd",
                   "encryption": "none",
-                  "flow": "xtls-rprx-vision"
+                  "flow": ""
                 }
               ]
             }
           ]
         },
         "streamSettings": {
-          "network": "tcp",
-          "security": "reality",
-          "realitySettings": {
-            "serverName": "ya.ru",
+          "network": "xhttp",
+          "xhttpSettings": {
+            "mode": "packet-up",
+            "host": "my.console.pc-club.app",
+            "path": "/api/orders/loadChunk/",
+            "extra": {
+              "xmux": {
+                "cMaxLifetimeMs": 0,
+                "cMaxReuseTimes": 66,
+                "maxConcurrency": 20,
+                "maxConnections": 0,
+                "hMaxRequestTimes": 480,
+                "hMaxReusableSecs": 1260
+              },
+              "seqKey": "id",
+              "headers": {
+                "X-Whitelist-Header": "467df350-bf59-11f1-ac96-e3616fea5e1b"
+              },
+              "sessionKey": "auth",
+              "noSSEHeader": true,
+              "xPaddingKey": "xss",
+              "seqPlacement": "query",
+              "sessionIDKey": "auth",
+              "uplinkDataKey": "X-Ver",
+              "xPaddingBytes": 550,
+              "sessionIDTable": "alphabet",
+              "xPaddingHeader": "api_v1",
+              "xPaddingMethod": "tokenish",
+              "sessionIDLength": 20,
+              "sessionPlacement": "query",
+              "uplinkHTTPMethod": "GET",
+              "xPaddingObfsMode": true,
+              "xPaddingPlacement": "query",
+              "sessionIDPlacement": "query",
+              "uplinkDataPlacement": "body",
+              "scStreamUpServerSecs": 50
+            }
+          },
+          "security": "tls",
+          "tlsSettings": {
+            "serverName": "my.console.pc-club.app",
+            "enableSessionResumption": false,
             "fingerprint": "firefox",
-            "publicKey": "VrAm7icVE5-GhTc0ROVKG9I_WfC9zq83XmlzgFipmwc",
-            "shortId": "7a8b00f27ef3098d"
+            "alpn": ["h2", "http/1.1"]
           }
-        },
-        "tag": "VLESS_Reality"
+        }
       },
-      { "protocol": "freedom", "settings": { "domainStrategy": "UseIP" }, "tag": "direct" },
-      { "protocol": "blackhole", "settings": { "response": { "type": "http" } }, "tag": "block" }
+      { "tag": "direct", "protocol": "freedom" },
+      { "tag": "block", "protocol": "blackhole" }
     ],
     "routing": {
       "domainStrategy": "IPIfNonMatch",
       "rules": [
-        { "type": "field", "domain": ["geosite:youtube"], "outboundTag": "VLESS_Reality" },
-        { "type": "field", "protocol": ["quic"], "outboundTag": "VLESS_Reality" },
-        { "type": "field", "network": "udp", "outboundTag": "VLESS_Reality" },
+        { "type": "field", "domain": ["geosite:youtube"], "outboundTag": "VLESS_Main" },
+        { "type": "field", "protocol": ["quic"], "outboundTag": "VLESS_Main" },
+        { "type": "field", "network": "udp", "outboundTag": "VLESS_Main" },
         { "type": "field", "domain": ["geosite:category-ru"], "outboundTag": "direct" },
         { "type": "field", "ip": ["geoip:ru"], "outboundTag": "direct" },
-        { "type": "field", "network": "tcp", "outboundTag": "VLESS_Reality" }
+        { "type": "field", "network": "tcp", "outboundTag": "VLESS_Main" }
       ]
     }
   },
@@ -108,46 +145,196 @@
     ],
     "outbounds": [
       {
+        "tag": "VLESS_Main",
         "protocol": "vless",
         "settings": {
           "vnext": [
             {
-              "address": "37.18.14.6",
-              "port": 7446,
+              "address": "95.129.236.171",
+              "port": 443,
               "users": [
                 {
-                  "id": "d6750ae2-cdc5-4e69-8ade-94a78ab8d4da",
+                  "id": "8c5e1cd5-2717-4560-9f5e-7d152f72c2dd",
                   "encryption": "none",
-                  "flow": "xtls-rprx-vision"
+                  "flow": ""
                 }
               ]
             }
           ]
         },
         "streamSettings": {
-          "network": "tcp",
-          "security": "reality",
-          "realitySettings": {
-            "serverName": "ya.ru",
+          "network": "xhttp",
+          "xhttpSettings": {
+            "mode": "packet-up",
+            "host": "my.console.pc-club.app",
+            "path": "/api/orders/loadChunk/",
+            "extra": {
+              "xmux": {
+                "cMaxLifetimeMs": 0,
+                "cMaxReuseTimes": 66,
+                "maxConcurrency": 20,
+                "maxConnections": 0,
+                "hMaxRequestTimes": 480,
+                "hMaxReusableSecs": 1260
+              },
+              "seqKey": "id",
+              "headers": {
+                "X-Whitelist-Header": "467df350-bf59-11f1-ac96-e3616fea5e1b"
+              },
+              "sessionKey": "auth",
+              "noSSEHeader": true,
+              "xPaddingKey": "xss",
+              "seqPlacement": "query",
+              "sessionIDKey": "auth",
+              "uplinkDataKey": "X-Ver",
+              "xPaddingBytes": 550,
+              "sessionIDTable": "alphabet",
+              "xPaddingHeader": "api_v1",
+              "xPaddingMethod": "tokenish",
+              "sessionIDLength": 20,
+              "sessionPlacement": "query",
+              "uplinkHTTPMethod": "GET",
+              "xPaddingObfsMode": true,
+              "xPaddingPlacement": "query",
+              "sessionIDPlacement": "query",
+              "uplinkDataPlacement": "body",
+              "scStreamUpServerSecs": 50
+            }
+          },
+          "security": "tls",
+          "tlsSettings": {
+            "serverName": "my.console.pc-club.app",
+            "enableSessionResumption": false,
             "fingerprint": "firefox",
-            "publicKey": "VrAm7icVE5-GhTc0ROVKG9I_WfC9zq83XmlzgFipmwc",
-            "shortId": "7a8b00f27ef3098d"
+            "alpn": ["h2", "http/1.1"]
           }
-        },
-        "tag": "VLESS_Reality"
+        }
       },
-      { "protocol": "freedom", "settings": { "domainStrategy": "UseIP" }, "tag": "direct" },
-      { "protocol": "blackhole", "settings": { "response": { "type": "http" } }, "tag": "block" }
+      { "tag": "direct", "protocol": "freedom" },
+      { "tag": "block", "protocol": "blackhole" }
     ],
     "routing": {
       "domainStrategy": "IPIfNonMatch",
       "rules": [
-        { "type": "field", "domain": ["geosite:youtube"], "outboundTag": "VLESS_Reality" },
-        { "type": "field", "protocol": ["quic"], "outboundTag": "VLESS_Reality" },
+        { "type": "field", "domain": ["geosite:youtube"], "outboundTag": "VLESS_Main" },
+        { "type": "field", "protocol": ["quic"], "outboundTag": "VLESS_Main" },
         { "type": "field", "network": "udp", "outboundTag": "direct" },
         { "type": "field", "domain": ["geosite:category-ru"], "outboundTag": "direct" },
         { "type": "field", "ip": ["geoip:ru"], "outboundTag": "direct" },
-        { "type": "field", "network": "tcp", "outboundTag": "VLESS_Reality" }
+        { "type": "field", "network": "tcp", "outboundTag": "VLESS_Main" }
+      ]
+    }
+  },
+  {
+    "remarks": "*может включаться по 1-10 секунд*",
+    "meta": { "serverDescription": " " },
+    "inbounds": [
+      {
+        "listen": "127.0.0.1",
+        "port": 10808,
+        "protocol": "socks",
+        "settings": { "allowTransparent": false, "auth": "noauth", "udp": true },
+        "sniffing": {
+          "destOverride": ["http", "tls", "quic"],
+          "enabled": true,
+          "metadataOnly": false,
+          "routeOnly": false
+        },
+        "tag": "socks"
+      },
+      {
+        "listen": "127.0.0.1",
+        "port": 10809,
+        "protocol": "http",
+        "settings": {},
+        "sniffing": {
+          "destOverride": ["http", "tls", "quic"],
+          "enabled": true,
+          "metadataOnly": false,
+          "routeOnly": false
+        },
+        "tag": "http"
+      }
+    ],
+    "outbounds": [
+      {
+        "tag": "VLESS_Main",
+        "protocol": "vless",
+        "settings": {
+          "vnext": [
+            {
+              "address": "95.129.236.171",
+              "port": 443,
+              "users": [
+                {
+                  "id": "8c5e1cd5-2717-4560-9f5e-7d152f72c2dd",
+                  "encryption": "none",
+                  "flow": ""
+                }
+              ]
+            }
+          ]
+        },
+        "streamSettings": {
+          "network": "xhttp",
+          "xhttpSettings": {
+            "mode": "packet-up",
+            "host": "my.console.pc-club.app",
+            "path": "/api/orders/loadChunk/",
+            "extra": {
+              "xmux": {
+                "cMaxLifetimeMs": 0,
+                "cMaxReuseTimes": 66,
+                "maxConcurrency": 20,
+                "maxConnections": 0,
+                "hMaxRequestTimes": 480,
+                "hMaxReusableSecs": 1260
+              },
+              "seqKey": "id",
+              "headers": {
+                "X-Whitelist-Header": "467df350-bf59-11f1-ac96-e3616fea5e1b"
+              },
+              "sessionKey": "auth",
+              "noSSEHeader": true,
+              "xPaddingKey": "xss",
+              "seqPlacement": "query",
+              "sessionIDKey": "auth",
+              "uplinkDataKey": "X-Ver",
+              "xPaddingBytes": 550,
+              "sessionIDTable": "alphabet",
+              "xPaddingHeader": "api_v1",
+              "xPaddingMethod": "tokenish",
+              "sessionIDLength": 20,
+              "sessionPlacement": "query",
+              "uplinkHTTPMethod": "GET",
+              "xPaddingObfsMode": true,
+              "xPaddingPlacement": "query",
+              "sessionIDPlacement": "query",
+              "uplinkDataPlacement": "body",
+              "scStreamUpServerSecs": 50
+            }
+          },
+          "security": "tls",
+          "tlsSettings": {
+            "serverName": "my.console.pc-club.app",
+            "enableSessionResumption": false,
+            "fingerprint": "firefox",
+            "alpn": ["h2", "http/1.1"]
+          }
+        }
+      },
+      { "tag": "direct", "protocol": "freedom" },
+      { "tag": "block", "protocol": "blackhole" }
+    ],
+    "routing": {
+      "domainStrategy": "IPIfNonMatch",
+      "rules": [
+        { "type": "field", "domain": ["geosite:youtube"], "outboundTag": "VLESS_Main" },
+        { "type": "field", "protocol": ["quic"], "outboundTag": "VLESS_Main" },
+        { "type": "field", "network": "udp", "outboundTag": "VLESS_Main" },
+        { "type": "field", "domain": ["geosite:category-ru"], "outboundTag": "direct" },
+        { "type": "field", "ip": ["geoip:ru"], "outboundTag": "direct" },
+        { "type": "field", "network": "tcp", "outboundTag": "VLESS_Main" }
       ]
     }
   }
