@@ -1,7 +1,7 @@
 [
   {
     "remarks": "🇪🇺 Режим 1 | Универсальный",
-    "meta": { "serverDescription": " " },
+    "meta": { "serverDescription": "Для YouTube с заблокированным в РФ контентом через Happ" },
     "inbounds": [
       {
         "listen": "127.0.0.1",
@@ -37,11 +37,11 @@
         "settings": {
           "vnext": [
             {
-              "address": "95.129.236.171",
+              "address": "yurpomoshch.webpolka.com",
               "port": 443,
               "users": [
                 {
-                  "id": "8c5e1cd5-2717-4560-9f5e-7d152f72c2dd",
+                  "id": "29b1b7ca-30ef-499c-b781-c479d676727e",
                   "encryption": "none",
                   "flow": ""
                 }
@@ -51,49 +51,24 @@
         },
         "streamSettings": {
           "network": "xhttp",
-          "xhttpSettings": {
-            "mode": "packet-up",
-            "host": "my.console.pc-club.app",
-            "path": "/api/orders/loadChunk/",
-            "extra": {
-              "xmux": {
-                "cMaxLifetimeMs": 0,
-                "cMaxReuseTimes": 66,
-                "maxConcurrency": 20,
-                "maxConnections": 0,
-                "hMaxRequestTimes": 480,
-                "hMaxReusableSecs": 1260
-              },
-              "seqKey": "id",
-              "headers": {
-                "X-Whitelist-Header": "467df350-bf59-11f1-ac96-e3616fea5e1b"
-              },
-              "sessionKey": "auth",
-              "noSSEHeader": true,
-              "xPaddingKey": "xss",
-              "seqPlacement": "query",
-              "sessionIDKey": "auth",
-              "uplinkDataKey": "X-Ver",
-              "xPaddingBytes": 550,
-              "sessionIDTable": "alphabet",
-              "xPaddingHeader": "api_v1",
-              "xPaddingMethod": "tokenish",
-              "sessionIDLength": 20,
-              "sessionPlacement": "query",
-              "uplinkHTTPMethod": "GET",
-              "xPaddingObfsMode": true,
-              "xPaddingPlacement": "query",
-              "sessionIDPlacement": "query",
-              "uplinkDataPlacement": "body",
-              "scStreamUpServerSecs": 50
-            }
-          },
           "security": "tls",
           "tlsSettings": {
-            "serverName": "my.console.pc-club.app",
-            "enableSessionResumption": false,
-            "fingerprint": "firefox",
-            "alpn": ["h2", "http/1.1"]
+            "serverName": "yurpomoshch.webpolka.com",
+            "alpn": [
+              "h2"
+            ],
+            "fingerprint": "qq"
+          },
+          "xhttpSettings": {
+            "mode": "auto",
+            "path": "/api/v1/",
+            "extra": {
+              "xmux": {
+                "maxConcurrency": "16",
+                "cMaxLifetimeMs": "180000",
+                "cMaxReuseTimes": "0"
+              }
+            }
           }
         }
       },
@@ -114,7 +89,7 @@
   },
   {
     "remarks": "🇷🇺 Режим 2 | Игры и звонки напрямую",
-    "meta": { "serverDescription": "Игры и звонки без задержек (не работают при белых списках)" },
+    "meta": { "serverDescription": "Для YouTube с заблокированным в РФ контентом через Happ" },
     "inbounds": [
       {
         "listen": "127.0.0.1",
@@ -150,11 +125,11 @@
         "settings": {
           "vnext": [
             {
-              "address": "95.129.236.171",
+              "address": "yurpomoshch.webpolka.com",
               "port": 443,
               "users": [
                 {
-                  "id": "8c5e1cd5-2717-4560-9f5e-7d152f72c2dd",
+                  "id": "29b1b7ca-30ef-499c-b781-c479d676727e",
                   "encryption": "none",
                   "flow": ""
                 }
@@ -164,49 +139,24 @@
         },
         "streamSettings": {
           "network": "xhttp",
-          "xhttpSettings": {
-            "mode": "packet-up",
-            "host": "my.console.pc-club.app",
-            "path": "/api/orders/loadChunk/",
-            "extra": {
-              "xmux": {
-                "cMaxLifetimeMs": 0,
-                "cMaxReuseTimes": 66,
-                "maxConcurrency": 20,
-                "maxConnections": 0,
-                "hMaxRequestTimes": 480,
-                "hMaxReusableSecs": 1260
-              },
-              "seqKey": "id",
-              "headers": {
-                "X-Whitelist-Header": "467df350-bf59-11f1-ac96-e3616fea5e1b"
-              },
-              "sessionKey": "auth",
-              "noSSEHeader": true,
-              "xPaddingKey": "xss",
-              "seqPlacement": "query",
-              "sessionIDKey": "auth",
-              "uplinkDataKey": "X-Ver",
-              "xPaddingBytes": 550,
-              "sessionIDTable": "alphabet",
-              "xPaddingHeader": "api_v1",
-              "xPaddingMethod": "tokenish",
-              "sessionIDLength": 20,
-              "sessionPlacement": "query",
-              "uplinkHTTPMethod": "GET",
-              "xPaddingObfsMode": true,
-              "xPaddingPlacement": "query",
-              "sessionIDPlacement": "query",
-              "uplinkDataPlacement": "body",
-              "scStreamUpServerSecs": 50
-            }
-          },
           "security": "tls",
           "tlsSettings": {
-            "serverName": "my.console.pc-club.app",
-            "enableSessionResumption": false,
-            "fingerprint": "firefox",
-            "alpn": ["h2", "http/1.1"]
+            "serverName": "yurpomoshch.webpolka.com",
+            "alpn": [
+              "h2"
+            ],
+            "fingerprint": "qq"
+          },
+          "xhttpSettings": {
+            "mode": "auto",
+            "path": "/api/v1/",
+            "extra": {
+              "xmux": {
+                "maxConcurrency": "16",
+                "cMaxLifetimeMs": "180000",
+                "cMaxReuseTimes": "0"
+              }
+            }
           }
         }
       },
@@ -226,8 +176,8 @@
     }
   },
   {
-    "remarks": "*может включаться по 1-10 секунд*",
-    "meta": { "serverDescription": " " },
+    "remarks": "🇪🇺 Режим 1 | Универсальный",
+    "meta": { "serverDescription": "Для YouTube с заблокированным в РФ контентом через Happ Plus" },
     "inbounds": [
       {
         "listen": "127.0.0.1",
@@ -263,11 +213,11 @@
         "settings": {
           "vnext": [
             {
-              "address": "95.129.236.171",
+              "address": "yurpomoshch.webpolka.com",
               "port": 443,
               "users": [
                 {
-                  "id": "8c5e1cd5-2717-4560-9f5e-7d152f72c2dd",
+                  "id": "29b1b7ca-30ef-499c-b781-c479d676727e",
                   "encryption": "none",
                   "flow": ""
                 }
@@ -277,49 +227,24 @@
         },
         "streamSettings": {
           "network": "xhttp",
-          "xhttpSettings": {
-            "mode": "packet-up",
-            "host": "my.console.pc-club.app",
-            "path": "/api/orders/loadChunk/",
-            "extra": {
-              "xmux": {
-                "cMaxLifetimeMs": 0,
-                "cMaxReuseTimes": 66,
-                "maxConcurrency": 20,
-                "maxConnections": 0,
-                "hMaxRequestTimes": 480,
-                "hMaxReusableSecs": 1260
-              },
-              "seqKey": "id",
-              "headers": {
-                "X-Whitelist-Header": "467df350-bf59-11f1-ac96-e3616fea5e1b"
-              },
-              "sessionKey": "auth",
-              "noSSEHeader": true,
-              "xPaddingKey": "xss",
-              "seqPlacement": "query",
-              "sessionIDKey": "auth",
-              "uplinkDataKey": "X-Ver",
-              "xPaddingBytes": 550,
-              "sessionIDTable": "alphabet",
-              "xPaddingHeader": "api_v1",
-              "xPaddingMethod": "tokenish",
-              "sessionIDLength": 20,
-              "sessionPlacement": "query",
-              "uplinkHTTPMethod": "GET",
-              "xPaddingObfsMode": true,
-              "xPaddingPlacement": "query",
-              "sessionIDPlacement": "query",
-              "uplinkDataPlacement": "body",
-              "scStreamUpServerSecs": 50
-            }
-          },
           "security": "tls",
           "tlsSettings": {
-            "serverName": "my.console.pc-club.app",
-            "enableSessionResumption": false,
-            "fingerprint": "firefox",
-            "alpn": ["h2", "http/1.1"]
+            "serverName": "yurpomoshch.webpolka.com",
+            "alpn": [
+              "h2"
+            ],
+            "fingerprint": "qq"
+          },
+          "xhttpSettings": {
+            "mode": "auto",
+            "path": "/api/v1/",
+            "extra": {
+              "xmux": {
+                "maxConcurrency": 16,
+                "cMaxLifetimeMs": 180000,
+                "cMaxReuseTimes": 0
+              }
+            }
           }
         }
       },
@@ -332,6 +257,94 @@
         { "type": "field", "domain": ["geosite:youtube"], "outboundTag": "VLESS_Main" },
         { "type": "field", "protocol": ["quic"], "outboundTag": "VLESS_Main" },
         { "type": "field", "network": "udp", "outboundTag": "VLESS_Main" },
+        { "type": "field", "domain": ["geosite:category-ru"], "outboundTag": "direct" },
+        { "type": "field", "ip": ["geoip:ru"], "outboundTag": "direct" },
+        { "type": "field", "network": "tcp", "outboundTag": "VLESS_Main" }
+      ]
+    }
+  },
+  {
+    "remarks": "🇷🇺 Режим 2 | Игры и звонки напрямую",
+    "meta": { "serverDescription": "Для YouTube с заблокированным в РФ контентом через Happ Plus" },
+    "inbounds": [
+      {
+        "listen": "127.0.0.1",
+        "port": 10808,
+        "protocol": "socks",
+        "settings": { "allowTransparent": false, "auth": "noauth", "udp": true },
+        "sniffing": {
+          "destOverride": ["http", "tls", "quic"],
+          "enabled": true,
+          "metadataOnly": false,
+          "routeOnly": false
+        },
+        "tag": "socks"
+      },
+      {
+        "listen": "127.0.0.1",
+        "port": 10809,
+        "protocol": "http",
+        "settings": {},
+        "sniffing": {
+          "destOverride": ["http", "tls", "quic"],
+          "enabled": true,
+          "metadataOnly": false,
+          "routeOnly": false
+        },
+        "tag": "http"
+      }
+    ],
+    "outbounds": [
+      {
+        "tag": "VLESS_Main",
+        "protocol": "vless",
+        "settings": {
+          "vnext": [
+            {
+              "address": "yurpomoshch.webpolka.com",
+              "port": 443,
+              "users": [
+                {
+                  "id": "29b1b7ca-30ef-499c-b781-c479d676727e",
+                  "encryption": "none",
+                  "flow": ""
+                }
+              ]
+            }
+          ]
+        },
+        "streamSettings": {
+          "network": "xhttp",
+          "security": "tls",
+          "tlsSettings": {
+            "serverName": "yurpomoshch.webpolka.com",
+            "alpn": [
+              "h2"
+            ],
+            "fingerprint": "qq"
+          },
+          "xhttpSettings": {
+            "mode": "auto",
+            "path": "/api/v1/",
+            "extra": {
+              "xmux": {
+                "maxConcurrency": 16,
+                "cMaxLifetimeMs": 180000,
+                "cMaxReuseTimes": 0
+              }
+            }
+          }
+        }
+      },
+      { "tag": "direct", "protocol": "freedom" },
+      { "tag": "block", "protocol": "blackhole" }
+    ],
+    "routing": {
+      "domainStrategy": "IPIfNonMatch",
+      "rules": [
+        { "type": "field", "domain": ["geosite:youtube"], "outboundTag": "VLESS_Main" },
+        { "type": "field", "protocol": ["quic"], "outboundTag": "VLESS_Main" },
+        { "type": "field", "network": "udp", "outboundTag": "direct" },
         { "type": "field", "domain": ["geosite:category-ru"], "outboundTag": "direct" },
         { "type": "field", "ip": ["geoip:ru"], "outboundTag": "direct" },
         { "type": "field", "network": "tcp", "outboundTag": "VLESS_Main" }
